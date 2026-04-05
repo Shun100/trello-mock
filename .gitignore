@@ -1,4 +1,4 @@
 .vscode
-.node-example/node-modules
-.node-example/package-lock.json
-.node-example/database.sqlite
+node-example/node_modules
+node-example/package-lock.json
+node-example/database.sqlite
