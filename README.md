@@ -36,6 +36,34 @@ Trello mock backend with TypeScript + Express
 | `tsx`            | TypeScriptをそのまま実行できて、しかも高速&ESM完全対応の実行ツール |
 | `@types/node`    | Node.js用の型定義                                                  |
 | `@types/express` | Express用の型定義                                                  |
+| `pg`             | PostgreSQL                                                         |
+| `@types/pg`      | PostgreSQL用の型定義                                               |
+| `dotenv`         | コンフィグファイル読取                                             |
+
+## 3. データ構造
+
+```Mermaid
+  erDiagram
+  direction LR
+
+  List {
+      Id INTEGER PK
+      title VARCHAR
+      position INTEGER
+  }
+
+  Card {
+      Id INTEGER PK
+      title VARCHAR
+      pisition INTEGER
+      description TEXT
+      dueDATE DATE
+      completed BOOLEAN
+      listId INTEGER FK
+  }
+
+  List ||--o{ Card : has
+```
 
 ## 開発環境の配布方法
 
