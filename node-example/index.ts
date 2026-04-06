@@ -173,7 +173,7 @@ app.get('/users/:id', async (req, res) => {
 // });
 
 // SQL版
-app.put('/usesr/:id', async (req, res) => {
+app.put('/users/:id', async (req, res) => {
   const id = Number.parseInt(req.params.id);
   const { name, email } = req.body;
   const result = await pool.query(

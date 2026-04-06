@@ -2,3 +2,4 @@
 node-example/node_modules
 node-example/package-lock.json
 node-example/database.sqlite
+trello-mock-api/node_modules
