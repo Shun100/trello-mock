@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { readConfig } from "./util.js";
+import { readConfig } from "./utils.js";
 
 // PostgreSQLの接続プール（接続管理）
 export const pool = new Pool({

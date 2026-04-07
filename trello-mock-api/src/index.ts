@@ -1,6 +1,6 @@
 import express from "express";
 import { pool } from "./connectionPool.js";
-import { readConfig } from "./util.js";
+import { readConfig } from "./utils.js";
 
 const app = express();
 const PORT = Number.parseInt(readConfig('SERVER_PORT')) ?? 8888;
