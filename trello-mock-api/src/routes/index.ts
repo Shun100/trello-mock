@@ -1,8 +1,14 @@
 import express from "express";
-import { pool } from "./connectionPool.js";
-import { readConfig } from "./utils.js";
+import cors from "cors";
+import { readConfig } from "../utils/config.js";
+import { pool } from "../utils/connectionPool.js";
 
 const app = express();
+app.use(express.json());
+// CORS対策 フロントエンドがポート番号5173, バックエンドが8888で異なるため、CORSの警告が出る
+app.use(cors({
+  origin: readConfig('CORS_ORIGINS').split(',') ?? []
+}));
 const PORT = Number.parseInt(readConfig('SERVER_PORT')) ?? 8888;
 
 /**

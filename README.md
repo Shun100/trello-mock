@@ -39,6 +39,8 @@ Trello mock backend with TypeScript + Express
 | `pg`             | PostgreSQL                                                         |
 | `@types/pg`      | PostgreSQL用の型定義                                               |
 | `dotenv`         | コンフィグファイル読取                                             |
+| `cors`           | CORS対策                                                           |
+| `@types/cors     | cors用の型定義                                                     |
 
 ## 3. データ構造
 
