@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { readConfig } from "../utils/config.js";
 import { pool } from "../utils/connectionPool.js";
+import * as listRepository from "../repository/listRepository.js";
 
 const app = express();
 app.use(express.json());
@@ -35,6 +36,21 @@ export const startServer = () => {
     process.exit(1);
   }
 }
+
+/**
+ * リスト登録
+ */
+app.post('/lists', async (req, res) => {
+  const { title } = req.body;
+  try {
+    const result = await listRepository.save(title);
+    res.status(201).json(result);
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: '保存に失敗しました' });
+  }
+});
 
 checkDBConnection().then(() => {
   startServer();
