@@ -45,7 +45,6 @@ app.post('/lists', async (req, res) => {
   try {
     const result = await listRepository.save(title);
     res.status(201).json(result);
-    
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: '保存に失敗しました' });
