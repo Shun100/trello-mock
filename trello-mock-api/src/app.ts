@@ -4,6 +4,7 @@ import cors from "cors";
 import { readConfig } from "./utils/config.js";
 import { pool } from "./utils/connectionPool.js";
 import listRoutes from "./routes/listRoutes.js";
+import cardRoutes from "./routes/cardRoutes.js";
 import { requestError, requestTime, serverError } from "./middlewares/middleWare.js";
 
 // ミドルウェア設定
@@ -14,6 +15,7 @@ function setMiddlewares(app: Express) {
   // CORS対策 フロントエンドがポート番号5173, バックエンドが8888で異なるため、CORSの警告が出る
   app.use(cors({ origin: readConfig('CORS_ORIGINS').split(',') ?? [] }));
   app.use('/lists', listRoutes);
+  app.use('/cards', cardRoutes);
   app.use(requestError);
   app.use(serverError);
 }
