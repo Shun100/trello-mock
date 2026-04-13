@@ -1,7 +1,15 @@
 import express, { Router } from "express";
+import * as cardController from "../controllers/cardController.js";
 
 const router = Router();
 
-router.post('/', );
+// カード登録
+router.post('/', cardController.create);
+
+// カード取得
+router.get('/', cardController.findAll);
+
+// カード削除
+router.delete('/:id', cardController.remove);
 
 export default router;

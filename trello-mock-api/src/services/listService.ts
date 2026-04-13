@@ -1,4 +1,4 @@
-import type { ListDto } from "../dtos/listDto.js";
+import type { ListDto } from "../types/dto.js";
 import { AppError } from "../errors/AppError.js";
 import * as listRepository from "../repositories/listRepository.js";
 import type { ListEntity } from "../types/entity.js";

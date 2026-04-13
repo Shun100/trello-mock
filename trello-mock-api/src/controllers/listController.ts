@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import type { ListDto } from "../dtos/listDto.js";
+import type { ListDto } from "../types/dto.js";
 import * as listService from "../services/listService.js";
 import { AppError } from "../errors/AppError.js";
 import type { ListEntity } from "../types/entity.js";
@@ -30,11 +30,13 @@ export async function remove(req: Request, res: Response, next: NextFunction) {
   const id = req.params.id;
 
   if (!id) {
-    throw new AppError(400, 'リストが指定されていません');
+    next(new AppError(400, 'IDが指定されていません'));
+    return;
   }
 
   if (Array.isArray(id)) {
-    throw new AppError(400, `不正なパラメータ: ${id}`);
+    next(new AppError(400, `不正なパラメータ: ${id}`));
+    return;
   }
 
   try {

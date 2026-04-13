@@ -1,11 +1,45 @@
 import type { Request, Response, NextFunction } from "express";
+import * as cardService from "../services/cardService.js";
+import { AppError } from "../errors/AppError.js";
 
 // カード登録
-export async function createCard(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function create(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const { title, listId } = req.body;
-    const result = await cardServeice.create(title, listId);
+    const result = await cardService.create({ title, listId });
     res.status(201).json(result);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// カード取得
+export async function findAll(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const result = await cardService.findAll();
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// カード削除
+export async function remove(req: Request, res: Response, next: NextFunction): Promise<void> {
+  const id = req.params.id;
+
+  if (!id) {
+    next(new AppError(400, 'IDが指定されていません'));
+    return;
+  }
+
+  if (Array.isArray(id)) {
+    next(new AppError(400, `不正なパラメータ: ${id}`));
+    return;
+  }
+
+  try {
+    const result = await cardService.remove(id);
+    res.status(200).json(result);
   } catch (err) {
     next(err);
   }
