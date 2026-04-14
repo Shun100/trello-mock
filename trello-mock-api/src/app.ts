@@ -5,7 +5,7 @@ import { readConfig } from "./utils/config.js";
 import { pool } from "./utils/connectionPool.js";
 import listRoutes from "./routes/listRoutes.js";
 import cardRoutes from "./routes/cardRoutes.js";
-import { requestError, requestTime, serverError } from "./middlewares/middleWare.js";
+import { requestError, requestTime, serverError } from "./middlewares/middleware.js";
 
 // ミドルウェア設定
 function setMiddlewares(app: Express) {

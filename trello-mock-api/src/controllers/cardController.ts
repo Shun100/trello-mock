@@ -7,6 +7,9 @@ export async function create(req: Request, res: Response, next: NextFunction): P
   try {
     const { title, listId } = req.body;
     const result = await cardService.create({ title, listId });
+    if (!result) {
+      next(new AppError(500, `カードの登録に失敗しました req.body = ${req.body}`));
+    }
     res.status(201).json(result);
   } catch (err) {
     next(err);
@@ -28,13 +31,11 @@ export async function remove(req: Request, res: Response, next: NextFunction): P
   const id = req.params.id;
 
   if (!id) {
-    next(new AppError(400, 'IDが指定されていません'));
-    return;
+    return next(new AppError(400, 'IDが指定されていません'));
   }
 
   if (Array.isArray(id)) {
-    next(new AppError(400, `不正なパラメータ: ${id}`));
-    return;
+    return next(new AppError(400, `不正なパラメータ: ${id}`));
   }
 
   try {

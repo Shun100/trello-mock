@@ -13,7 +13,10 @@ export function requestError(req: Request, res: Response, next: NextFunction) {
   next(error);
 }
 
-// 500エラー
+/**
+ * 500エラー
+ * next(error)が呼び出されると、他のミドルウェアはスキップされた直接ここにジャンプする
+ */
 export function serverError(err: AppError, req: Request, res: Response, next: NextFunction) {
   // ステータスコードとメッセージの設定
   const statusCode: number = err.statusCode ?? 500;

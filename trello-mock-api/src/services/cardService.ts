@@ -2,7 +2,8 @@ import * as cardRepository from "../repositories/cardRepository.js";
 import type { cardEntity } from "../types/entity.js";
 
 // カード登録
-export async function create({ title, listId }: { title: string, listId: string }): Promise<cardEntity> {
+export async function create(
+  { title, listId }: { title: string, listId: string }): Promise<cardEntity | undefined> {
   const result = await cardRepository.create({ title, listId });
   return result;
 }
@@ -14,7 +15,7 @@ export async function findAll(): Promise<cardEntity[]> {
 }
 
 // カード削除
-export async function remove(id: string): Promise<cardEntity> {
+export async function remove(id: string): Promise<cardEntity | undefined> {
   const result = await cardRepository.remove(id);
   return result;
 }
