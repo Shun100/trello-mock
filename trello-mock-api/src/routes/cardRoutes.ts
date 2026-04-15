@@ -12,4 +12,7 @@ router.get('/', cardController.findAll);
 // カード削除
 router.delete('/:id', cardController.remove);
 
+// カード更新
+router.put('/', cardController.update);
+
 export default router;

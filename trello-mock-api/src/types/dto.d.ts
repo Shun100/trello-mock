@@ -3,3 +3,7 @@ export type ListDto = {
   title?: string;
   position: number;
 }
+
+export type CardDto = {
+  id: string;
+}

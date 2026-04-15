@@ -17,14 +17,11 @@ export function requestError(req: Request, res: Response, next: NextFunction) {
  * 500エラー
  * next(error)が呼び出されると、他のミドルウェアはスキップされた直接ここにジャンプする
  */
-export function serverError(err: AppError, req: Request, res: Response, next: NextFunction) {
-  // ステータスコードとメッセージの設定
-  const statusCode: number = err.statusCode ?? 500;
-  const message: string = err.message ?? 'サーバエラーが発生しました';
+export function serverError(err: unknown, req: Request, res: Response, next: NextFunction) {
+  const statusCode = err instanceof AppError ? err.statusCode : 500;
+  const message = err instanceof Error ? err.message : 'エラーが発生しました';
 
-  // ロギング
-  console.error(`[${new Date().toISOString()}] ${req.method} ${req.path} - Error: ${err.message}`);
-  
-  // レスポンスの返却
-  res.status(statusCode).json({ message });
+  console.error(`[${new Date().toISOString()}] ${req.method} ${req.path} - Error: ${message}`);
+
+  res.status(statusCode).json(message);
 }

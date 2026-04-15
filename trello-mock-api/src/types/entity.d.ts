@@ -6,7 +6,7 @@ export type ListEntity = {
   updated_at: Date;
 }
 
-export type cardEntity = {
+export type CardEntity = {
   id: string;
   title: string;
   description: string;
