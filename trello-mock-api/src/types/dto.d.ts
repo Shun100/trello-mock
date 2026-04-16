@@ -6,4 +6,10 @@ export type ListDto = {
 
 export type CardDto = {
   id: string;
+  title: string;
+  description: string;
+  position: number;
+  completed: boolean;
+  dueDate: Date;
+  list_id: string;
 }

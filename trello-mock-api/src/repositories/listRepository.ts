@@ -108,6 +108,7 @@ export async function updateMany(lists: { id: string, position: number }[]): Pro
     const values: any[] = [];
     const placeholders : string[] = [];;
 
+    // TODO: 処理共通化
     lists.forEach((list, index) => {
       const i = index * 2;
       placeholders.push(`($${i + 1}, $${i + 2})`);

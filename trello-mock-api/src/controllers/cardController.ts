@@ -53,10 +53,10 @@ export async function update(req: Request, res: Response, next: NextFunction): P
   if (!cards) {
     return next(new AppError(400, 'カードが指定されていません'));
   }
-  const cardDtos: CardDto[] = Array.isArray(cards) ? cards : [cards];
+  const dtos: CardDto[] = Array.isArray(cards) ? cards : [cards];
 
   try {
-    const results = await cardService.update(cardDtos);
+    const results = await cardService.update(dtos);
     res.json(200).json(results);
   } catch (err) {
     next(err);
